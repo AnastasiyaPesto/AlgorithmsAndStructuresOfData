@@ -17,7 +17,7 @@ public class HashTableChains {
     }
   }
 
-  public void addValue(byte value) {
+  public void addValue(int value) {
     byte hashIndex = hashFunction(value);
     Node elem = hashTable[hashIndex];
     if (elem == null) {
@@ -39,7 +39,7 @@ public class HashTableChains {
     return Byte.MAX_VALUE;
   }
 
-  private byte hashFunction(byte value) {
+  private byte hashFunction(int value) {
     return (byte) ((value << 1) % noOfBuckets);
   }
 

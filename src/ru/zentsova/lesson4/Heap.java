@@ -97,21 +97,17 @@ public class Heap {
     boolean result =  true;
     int left, right, len;
     len = arr.length;
-    if (isMax) {
-      for (int i = 0; i < len - 2 && result; i++) {
-        left = 2 * i + 1;
-        right = 2 * i + 2;
+    for (int i = 0; i < len - 2 && result; i++) {
+      left = 2 * i + 1;
+      right = 2 * i + 2;
+      if (isMax) {
         if (left < len && arr[i] < arr[left]) {
           result = false;
         }
         if (right < len && arr[i] < arr[right]) {
           result = false;
         }
-      }
-    } else {
-      for (int i = 0; i < len - 2 && result; i++) {
-        left = 2 * i + 1;
-        right = 2 * i + 2;
+      } else {
         if (left < len && arr[i] > arr[left]) {
           result = false;
         }
