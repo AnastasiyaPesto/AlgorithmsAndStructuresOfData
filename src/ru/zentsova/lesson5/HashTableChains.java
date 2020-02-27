@@ -1,24 +1,24 @@
 package ru.zentsova.lesson5;
 
 public class HashTableChains {
-  private int noOfBuckets;
+  private byte noOfBuckets;
   private Node[] hashTable;
-  private static final int DEFAULT_CAPACITY = 10;
+  private static final byte DEFAULT_CAPACITY = 10;
 
   public HashTableChains() {
     this.noOfBuckets = DEFAULT_CAPACITY;
-    this.hashTable = (Node[]) new Object[DEFAULT_CAPACITY];
+    this.hashTable =  new Node[DEFAULT_CAPACITY];
   }
 
-  public HashTableChains(int capacity) {
+  public HashTableChains(byte capacity) {
     if (capacity > 0) {
       this.noOfBuckets = capacity;
       this.hashTable = new Node[capacity];
     }
   }
 
-  public void addValue(int value) {
-    int hashIndex = hashFunction(value);
+  public void addValue(byte value) {
+    byte hashIndex = hashFunction(value);
     Node elem = hashTable[hashIndex];
     if (elem == null) {
       hashTable[hashIndex] = new Node(value);
@@ -27,8 +27,8 @@ public class HashTableChains {
     }
   }
 
-  public int findValue(int value) {
-    int hashIndex = hashFunction(value);
+  public int findValue(byte value) {
+    byte hashIndex = hashFunction(value);
     Node elem = hashTable[hashIndex];
     while (elem != null && elem.data != value) {
       elem = elem.next;
@@ -36,17 +36,16 @@ public class HashTableChains {
     if (elem != null) {
       return elem.data;
     }
-    return Integer.MAX_VALUE;
+    return Byte.MAX_VALUE;
   }
 
-  private int hashFunction(int value) {
-    return value % noOfBuckets;
+  private byte hashFunction(byte value) {
+    return (byte) ((value << 1) % noOfBuckets);
   }
 
   private class Node {
     private int data;
     private Node next = null;
-
     private Node(int data) {
       this.data = data;
     }
