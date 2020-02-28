@@ -30,20 +30,20 @@ public class HashTableOpenAddressing {
   public void addValue(int value) {
     byte hashIndex = hashFunction(value);
     if (capacity != size) {
-      if (hashTable[hashIndex] == null) {
+      if (hashTable[hashIndex] == null && hashTable[hashIndex].isDeleted) {
         hashTable[hashIndex] = new Value(value);
         capacity++;
         return;
       }
       for (byte i = (byte) (hashIndex + 1); i < size; i++) {
-        if (hashTable[i] == null) {
+        if (hashTable[i] == null && hashTable[hashIndex].isDeleted) {
           hashTable[i] = new Value(value);
           capacity++;
           return;
         }
       }
       for (byte i = 0; i < hashIndex; i++) {
-        if (hashTable[i] == null) {
+        if (hashTable[i] == null && hashTable[hashIndex].isDeleted) {
           hashTable[i] = new Value(value);
           capacity++;
           return;
