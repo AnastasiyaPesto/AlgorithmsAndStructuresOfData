@@ -5,7 +5,7 @@ import java.util.Random;
 public class MathUtils {
 
   // Задание 1. Даны три числа a,b,c. Требуется найти среди них медиану.
-  public static int  selection(int[] array, int k) {
+  public static int selection(int[] array, int k) {
     if (k > -1) {
       int len = array.length;
       if (len == 0) {
@@ -44,6 +44,18 @@ public class MathUtils {
       }
     }
     return Integer.MAX_VALUE;
+  }
+
+  public static int findMedian(int a, int b, int c) {
+    if ((a == b && b == c)
+      || (a == b) || (a == c) || (b == c))
+      return a;
+
+    if (a > b) {
+      if (c > b)
+        return b;
+    }
+    return -1;
   }
 
   // Задание 2. Дано неотрицательное число. Требуется перевернуть его.
