@@ -1,8 +1,53 @@
 package ru.zentsova.lesson1;
 
+import java.util.Random;
+
 public class MathUtils {
 
-    public static int rotate(int num) {
+  // Задание 1. Даны три числа a,b,c. Требуется найти среди них медиану.
+  public static int  selection(int[] array, int k) {
+    if (k > -1) {
+      int len = array.length;
+      if (len == 0) {
+        return Integer.MAX_VALUE;
+      }
+      if (len == 1)
+        return array[0];
+      if (len == 2) {
+        return (array[1] >= array[0] ? array[0] : array[1]);
+      }
+      int pivotInd = new Random().nextInt(len);
+      int pivot = array[pivotInd];
+      int lessAndEqual = 0;
+      int more = 0;
+      for (int i = 0; i < len; i++) {
+        if (array[i] <= pivot)
+          lessAndEqual++;
+        else
+          more++;
+      }
+      int[] mas;
+      if (k <= (lessAndEqual - 1)) {
+        mas = new int[lessAndEqual];
+        for (int i = len - 1; i >= 0; i--) {
+          if (array[i] <= pivot)
+            mas[--lessAndEqual] = array[i];
+        }
+        return selection(mas, k);
+      } else {
+        mas = new int[more];
+        for (int i = len - 1; i >= 0; i--) {
+          if ( array[i] > pivot)
+            mas[--more] = array[i];
+        }
+        return selection(mas, k - lessAndEqual + 1);
+      }
+    }
+    return Integer.MAX_VALUE;
+  }
+
+  // Задание 2. Дано неотрицательное число. Требуется перевернуть его.
+  public static int rotate(int num) {
         int n1 = num;
         int result = 0;
         int digit;
@@ -15,7 +60,8 @@ public class MathUtils {
         return result;
     }
 
-    public static long exponentiation(int a, int b) {
+  // Доп. задание. Даны два целых неотрицательных числа a, b. Требуется написать функцию возведения в степень a^b;
+  public static long exponentiation(int a, int b) {
         if (b == 0)
             return 1;
         if (b == 1)
@@ -38,33 +84,6 @@ public class MathUtils {
             k = k - 2;
         }
         return result;
-    }
-
-    /**
-     * Вычислить факторил (рекурсивный способ)
-     */
-    public static int calcFactorialRecursion(int n) {
-        if (n <= 1)
-            return n;
-        else
-            return n * calcFactorialRecursion(n - 1);
-    }
-
-    /**
-     * Вычислить факторил (итеративный способ)
-     */
-    public static int calcFactorialIter(int n) {
-        int result = 1;
-        for (int i = 2; i <= n; i++) {
-            result = result * i;
-        }
-        return result;
-    }
-
-    public static int calcNumbersOfFibonacci(int n) {
-        if (n <= 1)
-            return n;
-        return calcNumbersOfFibonacci(n - 1) + calcNumbersOfFibonacci(n - 2);
     }
 
 }
