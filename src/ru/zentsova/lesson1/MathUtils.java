@@ -47,15 +47,26 @@ public class MathUtils {
   }
 
   public static int findMedian(int a, int b, int c) {
-    if ((a == b && b == c)
-      || (a == b) || (a == c) || (b == c))
+    if (a == b || a == c)
       return a;
 
+    if (b == c)
+      return b;
+
     if (a > b) {
-      if (c > b)
+      if (b > c)
         return b;
+      else if (a > c)
+        return c;
+      else
+        return a;
+    } else {
+      if (a > c)
+        return a;
+      else if (b > c)
+        return c;
+      return b;
     }
-    return -1;
   }
 
   // Задание 2. Дано неотрицательное число. Требуется перевернуть его.

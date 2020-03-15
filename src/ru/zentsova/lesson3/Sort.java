@@ -9,22 +9,22 @@ public class Sort {
   public static void insertion(int[] array) {
     if (array == null || array.length < 2)
       return;
-
-    int tmp;
-    int i = 0;
-    while (i < array.length) {
-      for (int j = 0; j < i; j++) {
-        if (array[j] > array[i]) {
-          tmp = array[i];
-          for (int k = i; k > j; k--) {
-            array[k] = array[k - 1];
-          }
-          array[j] = tmp;
-          break;
-        }
+    int j;
+    for (int i = 1; i < array.length; i++) {
+      j = i;
+      while (j > 0 && array[j] < array[j - 1]) {
+        swap(array, j, j -1);
+        j--;
       }
-      i++;
     }
+  }
+
+  private static void swap(int[] arr, int i, int j) {
+    if ((i == j) || (arr.length == 0) || (i < 0 || i >= arr.length) || (j < 0 || j >= arr.length))
+      return;
+    int tmp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = tmp;
   }
 
   /**

@@ -1,9 +1,10 @@
-package ru.zentsova.Lesson7;
+package ru.zentsova.lesson7;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
+import ru.zentsova.Lesson7.StrUtils;
 
 class StrUtilsTest {
 
