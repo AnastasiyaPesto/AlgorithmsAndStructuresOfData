@@ -83,4 +83,34 @@ public class Sort {
     return Integer.MAX_VALUE;
   }
 
+  public static void qsort(int[] arr, int low, int high) {
+    if (arr.length == 0)
+      return;
+    if (low >= high)
+      return;
+    // выбор опорного элемента - середина массива
+    int p = arr[low + (high - low) / 2];
+    int i = low;
+    int j = high;
+    while (i <= j) {
+      while (arr[i] < p) {
+        i++;
+      }
+      while (arr[j] > p) {
+        j--;
+      }
+      if (i <= j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+        i++;
+        j--;
+      }
+    } ;
+    if (low < j)
+      qsort(arr, low, j);
+    if (high > i)
+      qsort(arr, i, high);
+  }
+
 }
